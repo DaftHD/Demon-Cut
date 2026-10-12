@@ -1,8 +1,9 @@
 # SOP: updating the README hero image
 
-The image at the top of `README.md` is `assets/editor.png`: the dark-theme
+To show the editor in `README.md`, use `assets/editor.png`: the dark-theme
 editor window floating on a soft gradient card, built by
 `scripts/make-preview.py` from the raw capture in `assets/editor-dark.png`.
+(Demon Cut's README has no screenshot yet; these steps make the first one.)
 
 ## Steps
 
@@ -12,7 +13,7 @@ editor window floating on a soft gradient card, built by
    panel. Make the window wide (the composite assumes a landscape window).
 
 2. **Capture the window.** In dark theme, press `⌘⇧4`, then `Space`, then
-   click the Concat window. macOS saves the window with a transparent margin
+   click the Demon Cut window. macOS saves the window with a transparent margin
    and its drop shadow; the script trims that away itself.
 
 3. **Build the composite:**
@@ -38,5 +39,5 @@ editor window floating on a soft gradient card, built by
    pushing:
 
    ```sh
-   curl https://purge.jsdelivr.net/gh/jub0t/Concat@main/assets/editor.png
+   curl https://purge.jsdelivr.net/gh/DaftHD/Demon-Cut@main/assets/editor.png
    ```

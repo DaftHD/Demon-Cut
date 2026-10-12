@@ -329,7 +329,7 @@ pub enum Reply {
 pub struct VersionInfo {
     /// [`API_VERSION`].
     pub api_version: String,
-    /// The Concat build.
+    /// The Demon Cut build.
     pub concat: String,
     /// Where this machine keeps recents, templates and models.
     pub dirs: Dirs,

@@ -16,7 +16,7 @@ use crate::Error;
 /// The package format this build reads: the shape of the manifest, the
 /// template and expression syntax, and the shader's contract with the
 /// compositor. Bumped when any of those changes in a way an older build
-/// could not read, so a package written for a newer Concat says so rather
+/// could not read, so a package written for a newer Demon Cut says so rather
 /// than failing in the shader compiler.
 ///
 /// Format 2 is the scene-linear contract: the shader samples the working
@@ -513,8 +513,8 @@ impl Manifest {
         }
         if self.format > FORMAT {
             return Err(self.invalid(format!(
-                "written for package format {}, and this Concat reads up to {FORMAT}: \
-                 a newer Concat is needed",
+                "written for package format {}, and this Demon Cut reads up to {FORMAT}: \
+                 a newer Demon Cut is needed",
                 self.format
             )));
         }
@@ -900,7 +900,7 @@ mod tests {
         let current = Manifest::parse(&format!("format = {FORMAT}\n{shader}")).expect("parses");
         assert_eq!(current.format, FORMAT);
         assert!(current.scene_linear());
-        rejects(&format!("format = {}\n{GOOD}", FORMAT + 1), "newer Concat");
+        rejects(&format!("format = {}\n{GOOD}", FORMAT + 1), "newer Demon Cut");
         rejects(&format!("format = 0\n{GOOD}"), "format is 0");
         rejects(&format!("format = \"1\"\n{GOOD}"), "format");
     }

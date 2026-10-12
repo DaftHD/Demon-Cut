@@ -8,7 +8,7 @@
 //! the [`Hub`], one writes whatever is put in the connection's outbox -
 //! responses and events alike - so a job's event from another thread never
 //! interleaves with a response half-written. The wire is exactly what
-//! `concat-cli api` reads and writes; see `concat_api::rpc`.
+//! `demoncut-cli api` reads and writes; see `concat_api::rpc`.
 //!
 //! A connection's first line is `{"jsonrpc": "2.0", "id": 1, "method":
 //! "auth", "params": {"token": "..."}}`, with the server's token. Anything

@@ -587,7 +587,7 @@ impl Speech {
         })
     }
 
-    /// Streams one Kokoro bundle from Concat's mirror and unpacks it.
+    /// Streams one Kokoro bundle from Demon Cut's mirror and unpacks it.
     /// Blocks for the whole download: run it on its own thread.
     ///
     /// The archive lands in a `.part`, unpacks into a `.staging-<id>` folder,

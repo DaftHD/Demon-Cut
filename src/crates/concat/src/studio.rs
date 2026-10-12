@@ -10711,8 +10711,8 @@ mod tests {
     #[test]
     fn home_folder_is_under_home_with_native_separators() {
         let home = std::env::home_dir().expect("a home directory");
-        let folder = std::path::PathBuf::from(home_folder("Desktop/Concat"));
-        assert_eq!(folder, home.join("Desktop").join("Concat"));
+        let folder = std::path::PathBuf::from(home_folder("Desktop/Demon Cut"));
+        assert_eq!(folder, home.join("Desktop").join("Demon Cut"));
         #[cfg(windows)]
         assert!(!folder.to_string_lossy().contains('/'));
     }

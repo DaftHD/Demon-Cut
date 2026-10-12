@@ -108,7 +108,7 @@ fn default_location() -> String {
     location
 }
 
-/// Where a new project goes on `os`: a Concat folder on the desktop. The
+/// Where a new project goes on `os`: a Demon Cut folder on the desktop. The
 /// desktop the system names, not `~/Desktop`: on Windows OneDrive often
 /// moves it, and on Linux it is called what the desktop's language calls
 /// it. A phone has no desk. An Android phone's projects live at the top of
@@ -118,11 +118,11 @@ fn default_location() -> String {
 /// new project failed with EPERM. https://github.com/jub0t/Concat/issues/299
 fn location_on(os: &str, desktop: Option<PathBuf>, home: impl Fn(&str) -> String) -> String {
     match os {
-        "android" => home("Concat"),
-        "ios" => home("Documents/Concat"),
+        "android" => home("Demon Cut"),
+        "ios" => home("Documents/Demon Cut"),
         _ => desktop
-            .map(|desktop| desktop.join("Concat").to_string_lossy().into_owned())
-            .unwrap_or_else(|| home("Desktop/Concat")),
+            .map(|desktop| desktop.join("Demon Cut").to_string_lossy().into_owned())
+            .unwrap_or_else(|| home("Desktop/Demon Cut")),
     }
 }
 
@@ -377,15 +377,15 @@ mod tests {
         let desktop = || Some(PathBuf::from("/desk"));
         assert_eq!(
             location_on("ios", desktop(), home),
-            "/home/Documents/Concat"
+            "/home/Documents/Demon Cut"
         );
-        assert_eq!(location_on("ios", None, home), "/home/Documents/Concat");
-        assert_eq!(location_on("android", None, home), "/home/Concat");
+        assert_eq!(location_on("ios", None, home), "/home/Documents/Demon Cut");
+        assert_eq!(location_on("android", None, home), "/home/Demon Cut");
         assert_eq!(
             PathBuf::from(location_on("macos", desktop(), home)),
-            Path::new("/desk").join("Concat")
+            Path::new("/desk").join("Demon Cut")
         );
-        assert_eq!(location_on("linux", None, home), "/home/Desktop/Concat");
+        assert_eq!(location_on("linux", None, home), "/home/Desktop/Demon Cut");
     }
 
     /// The next untitled name skips every folder already there, and starts

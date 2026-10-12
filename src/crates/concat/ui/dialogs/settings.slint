@@ -59,12 +59,12 @@ export struct SettingsData {
     playhead-stops: bool,
     /// the magnetic timeline: deleting and trimming close the gap
     magnetic: bool,
-    /// where model downloads look first: automatic, Concat's mirror,
+    /// where model downloads look first: automatic, Demon Cut's mirror,
     /// hf-mirror.com, the original source, a custom URL
     download-source: int,
     /// the base URL of a custom source
     download-base: string,
-    /// the Concat API served on a socket while the window is open
+    /// the Demon Cut API served on a socket while the window is open
     server-enabled: bool,
     /// the two halves of "127.0.0.1:7420"
     server-host: string,
@@ -1175,6 +1175,15 @@ export component SettingsDialog inherits Modal {
                         color: Theme.fg;
                         font-size: Theme.fs-lg;
                         font-weight: Theme.weight-title;
+                    }
+
+                    // The fork's notice: where the code came from, and its
+                    // licence (AGPL-3.0 section 5).
+                    Text {
+                        text: I18n.t("settings.basedOnConcat");
+                        color: Theme.fg-muted;
+                        font-size: Theme.fs-sm;
+                        wrap: word-wrap;
                     }
                 }
 

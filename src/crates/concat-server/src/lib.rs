@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // SPDX-FileCopyrightText: 2026 Jareer and Concat contributors
 
-//! The Concat API on a socket, for a caller that is another process: a
+//! The Demon Cut API on a socket, for a caller that is another process: a
 //! script, an editor plugin, a service on the same machine.
 //!
 //! One [`Hub`] owns the one [`Api`] on a thread of its own and serialises

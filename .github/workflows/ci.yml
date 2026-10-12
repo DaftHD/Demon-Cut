@@ -139,8 +139,8 @@ jobs:
       # keeps en.json the inventory of them and every shipped language
       # keyed off it. See TRANSLATING.md.
       - run: python3 scripts/locales.py --check
-      # The models Concat downloads are mirrored onto a release of this
-      # repository; models/manifest.toml is what fills that mirror and the
+      # The models Demon Cut downloads are mirrored onto a release of upstream
+      # Concat's repository; models/manifest.toml is what fills that mirror and the
       # engine's tables are what a download is checked against. This keeps
       # the two saying the same thing. See models/manifest.toml.
       - run: python3 scripts/models.py --check

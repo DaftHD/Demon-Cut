@@ -4,13 +4,14 @@
 //! Where a downloadable model is fetched from, and what proves it arrived
 //! whole.
 //!
-//! Concat carries no weights in its bundle: a cutout network, a Kokoro voice
+//! Demon Cut carries no weights in its bundle: a cutout network, a Kokoro voice
 //! bank and a whisper model together outweigh the editor many times over,
 //! and most people never ask for all three. Each is fetched the first time a
 //! feature needs one.
 //!
-//! Every model Concat offers is mirrored onto a release of its own
-//! repository, and the mirror is what a download asks for first. Upstream -
+//! Every model Demon Cut offers is mirrored onto a release of the upstream
+//! Concat repository (jub0t/Concat), which this fork reads from rather than
+//! hosting its own copy. That mirror is what a download asks for first. Upstream -
 //! the third party the mirror was filled from - is the second try and
 //! nothing more: a model the editor offers should not stop existing because
 //! somebody else moved a path, and the bytes that arrive should be the bytes
@@ -26,7 +27,9 @@
 
 use std::path::Path;
 
-/// The repository the mirror lives on.
+/// The repository the mirror lives on: upstream Concat's, which this fork
+/// reuses. Point it at your own repository after running the "Mirror models"
+/// workflow there (and change `REPO` in scripts/models.py to match).
 pub const REPO: &str = "jub0t/Concat";
 
 /// The release every model is mirrored on.
@@ -36,7 +39,7 @@ pub const REPO: &str = "jub0t/Concat";
 /// in `models/manifest.toml`; the check script enforces that.
 pub const RELEASE: &str = "models-v1";
 
-/// Where `file` is mirrored: Concat's own release.
+/// Where `file` is mirrored: the upstream Concat release.
 pub fn mirror(file: &str) -> String {
     format!("https://github.com/{REPO}/releases/download/{RELEASE}/{file}")
 }
@@ -62,10 +65,10 @@ pub fn hf_mirror(url: &str) -> Option<String> {
 /// preference is where to look first, never the only place to look.
 #[derive(Clone, Copy, PartialEq, Eq, Debug, Default)]
 pub enum SourcePreference {
-    /// Concat's mirror, then Hugging Face, then upstream, then hf-mirror.
+    /// The Concat mirror, then Hugging Face, then upstream, then hf-mirror.
     #[default]
     Auto,
-    /// Concat's own release first.
+    /// The Concat mirror's release first.
     Mirror,
     /// hf-mirror.com first: for mainland China, where GitHub's downloads
     /// crawl and huggingface.co needs a VPN, and hf-mirror.com does not.

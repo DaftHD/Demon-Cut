@@ -4,18 +4,18 @@ version.workspace = true
 edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
-description = "Command line driver for the Concat engine."
+description = "Command line driver for the Demon Cut engine."
 
 # `concat` is the editor window's binary; the driver gets the suffix.
 [[bin]]
-name = "concat-cli"
+name = "demoncut-cli"
 path = "src/main.rs"
 
 [dependencies]
 concat-core.workspace = true
 concat-media.workspace = true
 concat-render.workspace = true
-# The `api` command: the Concat API over stdin and stdout. The `serve`
+# The `api` command: the Demon Cut API over stdin and stdout. The `serve`
 # command: the same on a socket.
 concat-api.workspace = true
 concat-server.workspace = true

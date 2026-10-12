@@ -1,11 +1,11 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // SPDX-FileCopyrightText: 2026 Jareer and Concat contributors
 
-//! Command line driver for the Concat engine.
+//! Command line driver for the Demon Cut engine.
 //!
 //! This exists so the engine can be exercised end to end without a UI. The
 //! `render` command is the vertical slice: probe, build a timeline, plan every
-//! frame, decode, composite, encode. The `api` command is the Concat API's
+//! frame, decode, composite, encode. The `api` command is the Demon Cut API's
 //! first transport: JSON-RPC requests in, responses and events out, one per
 //! line, so a script in any language edits and exports a project; `serve`
 //! is the same API on a socket, for callers that are other processes.
@@ -28,7 +28,7 @@ use concat_media::{EncodeOptions, Encoder, FrameSink, ReaderPool};
 use concat_render::{Compositor, WgpuCompositor, plan_frame};
 
 #[derive(Parser)]
-#[command(name = "concat-cli", version, about = "Concat engine command line")]
+#[command(name = "demoncut-cli", version, about = "Demon Cut engine command line")]
 struct Cli {
     #[command(subcommand)]
     command: Command,
@@ -56,7 +56,7 @@ enum Command {
         fade: u64,
     },
 
-    /// Speak the Concat API: a JSON-RPC request per line on stdin, a
+    /// Speak the Demon Cut API: a JSON-RPC request per line on stdin, a
     /// response per line on stdout, with events from running jobs as they
     /// happen. A bare `{"method": ..., ...}` without the envelope works too.
     Api {
@@ -64,7 +64,7 @@ enum Command {
         request: Option<String>,
     },
 
-    /// Serve the Concat API on a socket until the process is stopped:
+    /// Serve the Demon Cut API on a socket until the process is stopped:
     /// JSON-RPC lines over TCP or a Unix socket, and gRPC in a build that
     /// has it. With no address given, JSON-RPC on 127.0.0.1:7420. Every
     /// connection presents a token first; with none given, one is minted
@@ -93,7 +93,7 @@ enum Command {
     /// Draw one effect's card - a still through the package's own shader
     /// on the GPU, at its defaults or its manifest's `[card]` settings,
     /// the way the window draws the catalogue's - and write it as a JPEG:
-    /// `concat-cli preview still.jpg out.jpg --effect concat.vignette`.
+    /// `demoncut-cli preview still.jpg out.jpg --effect concat.vignette`.
     Preview {
         /// A still, or the first frame of a video.
         input: PathBuf,
@@ -211,28 +211,28 @@ fn serve(
     let server = concat_server::Server::start(config, concat_api::Api::new)?;
     if let Some(address) = server.json_addr() {
         println!(
-            "Concat API {}: JSON-RPC on {address}",
+            "Demon Cut API {}: JSON-RPC on {address}",
             concat_api::API_VERSION
         );
     }
     if let Some(path) = server.socket_path() {
         println!(
-            "Concat API {}: JSON-RPC on {}",
+            "Demon Cut API {}: JSON-RPC on {}",
             concat_api::API_VERSION,
             path.display()
         );
     }
     if let Some(address) = server.grpc_addr() {
-        println!("Concat API {}: gRPC on {address}", concat_api::API_VERSION);
+        println!("Demon Cut API {}: gRPC on {address}", concat_api::API_VERSION);
     }
     println!(
-        "Concat API {}: token {}",
+        "Demon Cut API {}: token {}",
         concat_api::API_VERSION,
         server.token()
     );
     let roots = server.roots();
     println!(
-        "Concat API {}: writes under {}",
+        "Demon Cut API {}: writes under {}",
         concat_api::API_VERSION,
         if roots.is_empty() {
             "anywhere".to_owned()

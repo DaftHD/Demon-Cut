@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // SPDX-FileCopyrightText: 2026 Jareer and Concat contributors
 
-// The Concat API over gRPC.
+// The Demon Cut API over gRPC.
 //
 // This is an envelope, not a second contract. The methods, their params
 // and their replies are the API's own and travel as the JSON text the

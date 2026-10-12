@@ -1,4 +1,4 @@
-# How Concat works, and where it stands
+# How Demon Cut works, and where it stands
 
 A map of the engine and the window for someone who wants to change one
 part without reading the rest, written against the tree at `7223d64`
@@ -7,7 +7,7 @@ crate and the file to open when the picture is not enough; the last
 section says what is known to be unfinished or wrong today, with the
 audit that says so in detail. Diagrams are Mermaid, which GitHub renders.
 
-Concat is a video editor in Rust. The engine is a set of crates with no
+Demon Cut is a video editor in Rust. The engine is a set of crates with no
 window in them; the window is a Slint application over that engine; a
 command-line tool and a socket server drive the same engine through the
 same API. One document format, one command set, one renderer, three ways
@@ -603,10 +603,11 @@ the Slint tree none.
 
 ## 15. Where we stand today
 
-The audits in `audit/` (23 and 28 September, 4, 9 and 11 October) score
-every crate and feature and name each finding with a file and a line;
-`audit/AUDIT-2026-10-11.md` is the current one and this section is its
-one-page shape. Whole-app scores on 11 October: architecture 8, user
+Upstream Concat's audits (23 and 28 September, 4, 9 and 11 October) score
+every crate and feature and name each finding with a file and a line. They
+were removed from Demon Cut's tree but remain in its git history
+(`git show 2d3a43e:audit/AUDIT-2026-10-11.md`); this section is the
+11 October audit's one-page shape, from before the fork. Whole-app scores on 11 October: architecture 8, user
 likeability 7, code quality 6, design philosophy 6, performance 6, testing
 6, documentation 6, maintainability 5, scalability 5, security 4, CI and
 release 4.

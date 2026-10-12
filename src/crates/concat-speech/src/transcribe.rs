@@ -248,7 +248,7 @@ impl Transcriber {
         })
     }
 
-    /// Streams one model from Concat's mirror into the models folder. Blocks
+    /// Streams one model from Demon Cut's mirror into the models folder. Blocks
     /// for the whole download: run it on its own thread.
     ///
     /// Written to `<file>.part` and renamed at the end: a download killed

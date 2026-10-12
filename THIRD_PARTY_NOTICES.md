@@ -1,13 +1,21 @@
 # Third-party notices
 
+## Concat
+
+Demon Cut is a modified version of **Concat** (https://github.com/jub0t/Concat),
+copyright 2026 Jareer and Concat contributors, licensed AGPL-3.0-or-later
+with the plugin exception in [`LICENSE-EXCEPTIONS.md`](LICENSE-EXCEPTIONS.md).
+Demon Cut keeps that licence. See [`FORK.md`](FORK.md) for what was changed
+and when.
+
 ## FFmpeg
 
-Concat links FFmpeg's libraries - libavformat, libavcodec, libavfilter,
+Demon Cut links FFmpeg's libraries - libavformat, libavcodec, libavfilter,
 libswscale and libswresample - through the `ffmpeg-the-third` crate. The
 Slint app spawns no `ffmpeg` or `ffprobe` process.
 
 FFmpeg is licensed under the LGPL-2.1-or-later; builds that include x264
-(which the H.264 export uses) are GPL-2.0-or-later. Concat's own sources are
+(which the H.264 export uses) are GPL-2.0-or-later. Demon Cut's own sources are
 AGPL-3.0-or-later, and section 13 of the GPL-3.0 and AGPL-3.0 expressly
 permits linking the two, so a distributed build may be conveyed on those
 terms. Which FFmpeg a binary carries depends on the machine that built it:
@@ -18,8 +26,8 @@ on Windows and in CI. FFmpeg source code: https://ffmpeg.org/download.html
 
 Transcription compiles whisper.cpp (https://github.com/ggml-org/whisper.cpp,
 MIT) and ggml into the app through the `whisper-rs` crate. Whisper models
-originate at https://huggingface.co/ggerganov/whisper.cpp (MIT); Concat
-mirrors them and downloads them on demand from that mirror, and never
+originate at https://huggingface.co/ggerganov/whisper.cpp (MIT); upstream
+Concat mirrors them and Demon Cut downloads them on demand from that mirror, and never
 bundles them. See "The model mirror" below.
 
 ## Slint — used under GPL-3.0-only
@@ -29,11 +37,11 @@ The `concat` crate (`src/crates/concat`) builds against
 **any one** of three licences, at the user's choice: a Royalty-free licence, a
 paid commercial licence, or **GNU GPL-3.0-only**.
 
-**Concat uses Slint under the GPL-3.0-only option.** That choice is deliberate
+**Demon Cut uses Slint under the GPL-3.0-only option.** That choice is deliberate
 and it is recorded here because nothing in the source tree would otherwise say
 which of the three applies. The Royalty-free and commercial options are not
 used: both are aimed at shipping proprietary applications, and neither can
-grant downstream recipients the freedoms Concat's own licence promises them.
+grant downstream recipients the freedoms Demon Cut's own licence promises them.
 
 Section 13 of the GPL-3.0 exists for exactly this combination:
 
@@ -43,10 +51,10 @@ Section 13 of the GPL-3.0 exists for exactly this combination:
 > the resulting work.
 
 So the combined binary is conveyable. Slint's portion remains GPL-3.0-only,
-Concat's portion remains AGPL-3.0-or-later, and the AGPL's section 13 network
-requirement applies to the combination as a whole. Anyone forking Concat who
+Demon Cut's portion remains AGPL-3.0-or-later, and the AGPL's section 13 network
+requirement applies to the combination as a whole. Anyone forking Demon Cut who
 would rather not be bound by the GPL must take Slint under one of its other
-two licences and remove or replace Concat's AGPL-licensed code accordingly;
+two licences and remove or replace Demon Cut's AGPL-licensed code accordingly;
 the two cannot be mixed.
 
 Slint pulls in its Skia renderer (see `src/crates/concat/Cargo.toml`) along
@@ -129,13 +137,13 @@ links onnxruntime (MIT), piper-phonemize (MIT) and espeak-ng
 (**GPL-3.0-or-later**, https://github.com/espeak-ng/espeak-ng) for
 grapheme-to-phoneme conversion. Because espeak-ng is compiled into the app
 binary, distributed builds must comply with the GPL-3.0 for that combined
-work. Concat's own sources are AGPL-3.0-or-later; section 13 of both GPL-3.0
+work. Demon Cut's own sources are AGPL-3.0-or-later; section 13 of both GPL-3.0
 and AGPL-3.0 expressly permits that combination, so the combined binary may be
 conveyed on those terms.
 
 Kokoro voice model bundles (Apache-2.0,
 https://huggingface.co/hexgrad/Kokoro-82M) originate in the sherpa-onnx
-releases - including espeak-ng's data files. Concat mirrors those bundles
+releases - including espeak-ng's data files. Upstream Concat mirrors those bundles
 and downloads them on demand from that mirror, and never bundles them with
 the app. See "The model mirror" below.
 
@@ -146,7 +154,7 @@ CC-BY-4.0) and packaged in the sherpa-onnx releases, with two sample
 recordings from Kyutai's delayed-streams-modeling repository as its named
 voices. It is downloaded on demand like the Kokoro bundles. Reading in the
 voice of a recording is a use the person doing it is answerable for:
-Concat offers it for the narrator's own voice, and Kyutai asks that no
+Demon Cut offers it for the narrator's own voice, and Kyutai asks that no
 one's voice be cloned without their consent.
 
 Chatterbox Turbo (MIT, https://huggingface.co/ResembleAI/chatterbox-turbo-ONNX,
@@ -154,7 +162,7 @@ Resemble AI) is driven through ONNX Runtime directly, from Resemble's own
 ONNX export, downloaded on demand like the other voices. Its GPT-2
 tokenizer is read by the tokenizers crate (Apache-2.0). Resemble's Python
 package stamps a Perth watermark on what it speaks; the ONNX pipeline
-carries no such step and Concat adds none, which MIT permits and which
+carries no such step and Demon Cut adds none, which MIT permits and which
 anyone passing the sound off as a person's should know is not there.
 
 ## ONNX Runtime
@@ -179,8 +187,8 @@ DLLs the program and its DLLs import - `vcruntime140.dll`,
 `vcruntime140_1.dll`, `msvcp140.dll` and their kin, whichever the build
 finds imported - copied unmodified from the redistributable folder of the
 Visual Studio that built the release (`VC\Redist\MSVC\<version>\<arch>\
-Microsoft.VC14x.CRT`). They are Microsoft's, not Concat's, and are not
-covered by Concat's licence: they are redistributed under the terms
+Microsoft.VC14x.CRT`). They are Microsoft's, not Demon Cut's, and are not
+covered by Demon Cut's licence: they are redistributed under the terms
 Microsoft sets for them, the Microsoft Software License Terms for Visual
 Studio and its list of distributable code (for Visual Studio 2022,
 https://learn.microsoft.com/visualstudio/releases/2022/redistribution),
@@ -210,7 +218,7 @@ except the first:
   (Apache-2.0), downloaded on first use. The brushes' model.
 
 Downloaded models live in the app's data directory under `cutout-models`
-and are never bundled; the three that are downloaded come from Concat's own
+and are never bundled; the three that are downloaded come from Demon Cut's own
 mirror of the sources named above, described below. They are all run by
 ONNX Runtime
 (https://github.com/microsoft/onnxruntime, MIT) through the `ort` crate
@@ -221,7 +229,7 @@ iOS, NNAPI on Android. How each platform carries the runtime is under
 
 ## The model mirror
 
-Every model named above is mirrored onto a release of Concat's own
+Every model named above is mirrored onto a release of Demon Cut's own
 repository, and the app fetches it from there; the upstream each was
 obtained from is the fallback and is named above in every case. The table of
 what is mirrored, and the digest each download is checked against, is
@@ -234,7 +242,7 @@ for Pocket TTS, BSD-3-Clause for Real-ESRGAN, MIT for Chatterbox Turbo and
 the whisper conversions, GPL-3.0 for Robust Video Matting. Those terms are met
 by the attributions above and by the licence files each mirrored archive
 carries; a mirrored file is a verbatim copy, never a modification. Nothing
-in the mirror is bundled with the app, and Concat claims no rights over any
+in the mirror is bundled with the app, and Demon Cut claims no rights over any
 of it.
 
 ## Effect preview photograph

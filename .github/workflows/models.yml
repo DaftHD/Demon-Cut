@@ -1,8 +1,13 @@
 name: Mirror models
 
-# Fills Concat's model mirror from upstream and publishes it as a release.
+# Fills a model mirror from upstream and publishes it as a release.
 #
-# Concat fetches its cutout networks, its Kokoro voice bank and its whisper
+# Demon Cut note: the app currently downloads from upstream Concat's mirror
+# (jub0t/Concat, see REPO in src/crates/concat-host/src/models.rs). Running
+# this here builds a mirror on this repository instead; switch REPO in
+# models.rs and scripts/models.py to this repository once it is filled.
+#
+# Demon Cut fetches its cutout networks, its Kokoro voice bank and its whisper
 # models on demand, and it fetches them from a release of this repository
 # rather than from whoever published them. models/manifest.toml is the table
 # of what those are; this workflow is what turns that table into the release
@@ -113,8 +118,8 @@ jobs:
           set -euo pipefail
           if ! gh release view "$RELEASE" >/dev/null 2>&1; then
             gh release create "$RELEASE" \
-              --title "Concat models ($RELEASE)" \
-              --notes "The models Concat downloads on demand, mirrored from the upstreams named in models/manifest.toml. Not an app release: see the tags beginning with v for those." \
+              --title "Demon Cut models ($RELEASE)" \
+              --notes "The models Demon Cut downloads on demand, mirrored from the upstreams named in models/manifest.toml. Not an app release: see the tags beginning with v for those." \
               --latest=false
           fi
           gh release upload "$RELEASE" mirror/* --clobber

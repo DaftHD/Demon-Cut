@@ -5,7 +5,7 @@ edition.workspace = true
 rust-version.workspace = true
 license.workspace = true
 publish = false
-description = "Concat, the editor window: the Slint front end that drives the engine."
+description = "Demon Cut, the editor window: the Slint front end that drives the engine."
 
 # The product's name is the binary's name, unsuffixed: `concat` is what a
 # user launches, and the concat-* crates are what it is made of. The window
@@ -15,7 +15,7 @@ description = "Concat, the editor window: the Slint front end that drives the en
 path = "src/lib.rs"
 
 [[bin]]
-name = "concat"
+name = "demoncut"
 path = "src/main.rs"
 
 # Slint is taken under its GPL-3.0-only option to sit beside the AGPL engine.
@@ -128,7 +128,7 @@ concat-project.workspace = true
 concat-export.workspace = true
 concat-host = { workspace = true, features = ["gpu"] }
 concat-speech = { workspace = true, features = ["chatterbox"] }
-# The Settings sheet's Remote page: the Concat API on a socket while the
+# The Settings sheet's Remote page: the Demon Cut API on a socket while the
 # window is open. JSON-RPC only; the gRPC feature stays with concat-cli.
 concat-server.workspace = true
 concat-api.workspace = true

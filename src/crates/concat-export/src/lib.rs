@@ -2596,7 +2596,7 @@ mod tests {
         footage.path = source.to_string_lossy().into_owned();
         footage.media_width = Some(64);
         footage.media_height = Some(64);
-        let nested = root.join("Movies").join("Concat");
+        let nested = root.join("Movies").join("Demon Cut");
         let request = ExportRequest {
             output: nested.join("out.mp4").to_string_lossy().into_owned(),
             width: 64,

@@ -1,8 +1,8 @@
 {
-  # Concat on Nix, Linux only: the people asking for a flake run Linux, and
+  # Demon Cut on Nix, Linux only: the people asking for a flake run Linux, and
   # the macOS and Windows builds ship from release.yml.
   #
-  #   nix build            the editor window, ./result/bin/concat
+  #   nix build            the editor window, ./result/bin/demoncut
   #   nix run              build and launch it
   #   nix develop          a shell with everything `cargo run -p concat` needs
   #
@@ -29,7 +29,7 @@
   #   source, which the sandbox cannot do, so a mismatch fails loudly.
   #
   # Vulkan is loaded at run time, hence the LD_LIBRARY_PATH on the wrapper.
-  description = "Concat - free and open source video editor";
+  description = "Demon Cut - free and open source video editor";
 
   inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
@@ -146,9 +146,9 @@
     in
     {
       packages = eachSystem (pkgs: rec {
-        default = concat;
-        concat = pkgs.rustPlatform.buildRustPackage {
-          pname = "concat";
+        default = demoncut;
+        demoncut = pkgs.rustPlatform.buildRustPackage {
+          pname = "demoncut";
           version = "0.2.7";
           src = self;
 
@@ -192,12 +192,12 @@
 
           desktopItems = [
             (pkgs.makeDesktopItem {
-              name = "concat";
-              exec = "concat";
-              icon = "concat";
-              desktopName = "Concat";
+              name = "demoncut";
+              exec = "demoncut";
+              icon = "demoncut";
+              desktopName = "Demon Cut";
               comment = "Free and open source video editor";
-              startupWMClass = "concat";
+              startupWMClass = "demoncut";
               categories = [
                 "AudioVideo"
                 "AudioVideoEditing"
@@ -206,16 +206,16 @@
           ];
 
           postInstall = ''
-            install -Dm644 assets/concat_logo_512.png \
-              $out/share/icons/hicolor/512x512/apps/concat.png
+            install -Dm644 assets/demoncut_logo_512.png \
+              $out/share/icons/hicolor/512x512/apps/demoncut.png
           '';
 
           meta = {
             description = "Free and open source video editor";
-            homepage = "https://github.com/jub0t/Concat";
+            homepage = "https://github.com/DaftHD/Demon-Cut";
             license = pkgs.lib.licenses.agpl3Plus;
             platforms = systems;
-            mainProgram = "concat";
+            mainProgram = "demoncut";
           };
         };
       });
@@ -240,7 +240,7 @@
           LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath (runtimeLibs pkgs);
 
           shellHook = ''
-            echo "Concat: cd src && cargo run -p concat"
+            echo "Demon Cut: cd src && cargo run -p concat"
           '';
         };
       });

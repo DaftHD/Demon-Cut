@@ -101,7 +101,7 @@ pub struct Fixture {
 /// to a picture of another, at one point of it. Every colour is in the
 /// compositor's working space - linear light, 1.0 the white of an SDR
 /// picture - and the check is made on a GPU, where the shader runs:
-/// concat-render's suite for the built-ins, `concat-cli check` for
+/// concat-render's suite for the built-ins, `demoncut-cli check` for
 /// anyone's.
 #[derive(Deserialize, Clone, PartialEq, Debug)]
 #[serde(deny_unknown_fields)]
@@ -202,11 +202,11 @@ impl Package {
         };
         // A picture is drawn by its shader on the GPU, in light: a picture
         // package written for format 1, or one that is an FFmpeg chain, is
-        // one this Concat no longer draws. Sound is still FFmpeg's.
+        // one this Demon Cut no longer draws. Sound is still FFmpeg's.
         if manifest.effect.kind.is_visual() {
             if !manifest.scene_linear() {
                 return Err(invalid(
-                    "a picture package written for format 1, which this Concat no longer \
+                    "a picture package written for format 1, which this Demon Cut no longer \
                      draws: it needs `format = 2` and a shader (see the package guide)"
                         .to_owned(),
                 ));
@@ -793,7 +793,7 @@ impl Package {
 
     /// Everything wrong with the package in `folder`, one line each, or
     /// nothing: the check an author runs before sharing a package, and
-    /// what `concat-cli check` prints. The folder is loaded the way the
+    /// what `demoncut-cli check` prints. The folder is loaded the way the
     /// window loads it, so a manifest, template or shader fault comes out
     /// here rather than in someone else's log; its id and aliases are held
     /// against `taken`, the catalogue it would join; and its fixtures run.

@@ -65,7 +65,7 @@ pub struct Preferences {
     pub download_source: Option<String>,
     /// The base URL a custom download source appends a model's file to.
     pub download_base: Option<String>,
-    /// The Concat API on a socket while the window is open.
+    /// The Demon Cut API on a socket while the window is open.
     #[serde(default)]
     pub server: ServerPrefs,
     /// The look new titles start from and generated captions are set in,
@@ -136,7 +136,7 @@ impl Default for ServerPrefs {
 }
 
 /// Where the window's server listens unless told otherwise: loopback, on
-/// the port `concat-cli serve` uses too.
+/// the port `demoncut-cli serve` uses too.
 pub const DEFAULT_LISTEN: &str = "127.0.0.1:7420";
 
 impl Preferences {

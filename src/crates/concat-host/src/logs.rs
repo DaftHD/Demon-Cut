@@ -109,7 +109,7 @@ fn install(sink: Option<Sink>, extra: Option<Box<dyn log::Log>>) -> Result<(), S
         .map(|()| log::set_max_level(level))
         .map_err(|_| "a logger was already installed".to_owned())?;
     log::info!(
-        "Concat {} · {} {} · {level}",
+        "Demon Cut {} · {} {} · {level}",
         env!("CARGO_PKG_VERSION"),
         std::env::consts::OS,
         std::env::consts::ARCH,
@@ -141,7 +141,7 @@ fn begin(dirs: &AppDirs) -> Result<(PathBuf, std::fs::File), String> {
     std::fs::create_dir_all(&folder)
         .map_err(|error| format!("could not create {}: {error}", folder.display()))?;
     prune(&folder);
-    let path = folder.join(format!("concat-{}.log", stamp(now(), Stamp::File)));
+    let path = folder.join(format!("demoncut-{}.log", stamp(now(), Stamp::File)));
     let file = std::fs::OpenOptions::new()
         .create(true)
         .append(true)
@@ -165,7 +165,7 @@ fn prune(folder: &Path) {
         .filter(|path| {
             path.file_name()
                 .and_then(|name| name.to_str())
-                .is_some_and(|name| name.starts_with("concat-") && name.ends_with(".log"))
+                .is_some_and(|name| name.starts_with("demoncut-") && name.ends_with(".log"))
         })
         .collect();
     if ours.len() < KEEP {
@@ -219,7 +219,7 @@ pub fn level_name(level: log::LevelFilter) -> &'static str {
 /// Sets the level for the rest of the run - the Settings sheet's choice,
 /// or the remembered one applied at launch - and says so in the log.
 ///
-/// The level is Concat's own: what the app says about what it is doing,
+/// The level is Demon Cut's own: what the app says about what it is doing,
 /// for whoever is chasing a bug with it. The crates underneath - wgpu,
 /// naga, Slint, fontdb, the decoders - stay at warnings and errors
 /// whatever the sheet says, since at Debug they bury a run in lines
@@ -231,13 +231,13 @@ pub fn set_level(level: log::LevelFilter) {
 }
 
 /// Whether the environment set the level: then every crate's lines come
-/// through at it, not only Concat's.
+/// through at it, not only Demon Cut's.
 fn firehose() -> bool {
     static FIREHOSE: std::sync::OnceLock<bool> = std::sync::OnceLock::new();
     *FIREHOSE.get_or_init(|| environment_level().is_some())
 }
 
-/// Whether a target is one of Concat's own crates.
+/// Whether a target is one of Demon Cut's own crates.
 fn own(target: &str) -> bool {
     target.starts_with("concat")
 }
@@ -262,7 +262,7 @@ impl log::Log for Logger {
         if metadata.level() > log::max_level() {
             return false;
         }
-        // Concat's own lines at the level asked for; the crates underneath
+        // Demon Cut's own lines at the level asked for; the crates underneath
         // at warnings and up, unless the environment asked for everything.
         own(metadata.target()) || firehose() || metadata.level() <= log::Level::Warn
     }
@@ -422,7 +422,7 @@ mod tests {
         std::fs::create_dir_all(&folder).expect("a temp dir");
         for index in 0..KEEP + 5 {
             std::fs::write(
-                folder.join(format!("concat-2026091{index:02}-000000.log")),
+                folder.join(format!("demoncut-2026091{index:02}-000000.log")),
                 "x",
             )
             .expect("a log");
@@ -440,11 +440,11 @@ mod tests {
         assert!(left.contains(&"notes.txt".to_owned()));
         let ours: Vec<&String> = left
             .iter()
-            .filter(|name| name.starts_with("concat-"))
+            .filter(|name| name.starts_with("demoncut-"))
             .collect();
         assert_eq!(ours.len(), KEEP - 1, "{ours:?}");
         // The ones kept are the last ones written.
-        assert!(ours.iter().all(|name| name.as_str() >= "concat-20260906"));
+        assert!(ours.iter().all(|name| name.as_str() >= "demoncut-20260906"));
         let _ = std::fs::remove_dir_all(&folder);
     }
 

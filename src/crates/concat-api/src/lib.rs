@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // SPDX-FileCopyrightText: 2026 Jareer and Concat contributors
 
-//! The Concat API: the one dispatcher every way of driving the editor
+//! The Demon Cut API: the one dispatcher every way of driving the editor
 //! without its window goes through.
 //!
 //! The command line, a daemon on a socket, an MCP server, a plugin: each is

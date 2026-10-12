@@ -34,7 +34,7 @@ use crate::dirs::AppDirs;
 use crate::models;
 
 /// The repository the releases are read from.
-pub const REPO: &str = "jub0t/Concat";
+pub const REPO: &str = "DaftHD/Demon-Cut";
 
 /// The first release with a Version page: the earliest one a person can
 /// come back from, so the earliest one offered.
@@ -42,7 +42,7 @@ pub const FIRST_SWITCHABLE: Version = Version::new(0, 2, 5);
 
 /// GitHub's list of the repository's releases, newest first. A hundred
 /// covers years of releases at this pace.
-const RELEASES_URL: &str = "https://api.github.com/repos/jub0t/Concat/releases?per_page=100";
+const RELEASES_URL: &str = "https://api.github.com/repos/DaftHD/Demon-Cut/releases?per_page=100";
 
 /// What a download that was stopped says.
 pub const CANCELLED: &str = "the download was cancelled";
@@ -205,9 +205,9 @@ pub fn standing(current: Version, releases: &[Release]) -> Standing {
 pub enum PackageKind {
     /// A macOS disk image with the app in it.
     Dmg,
-    /// The Windows installer, `Concat-<version>-windows-<arch>-setup.exe`.
+    /// The Windows installer, `DemonCut-<version>-windows-<arch>-setup.exe`.
     Setup,
-    /// The Windows Installer package, `Concat-<version>-windows-<arch>.msi`:
+    /// The Windows Installer package, `DemonCut-<version>-windows-<arch>.msi`:
     /// the per-machine install an administrator deploys.
     Msi,
     /// A Linux AppImage: one file, started where it lies.
@@ -267,7 +267,7 @@ pub fn installed_as() -> Result<PackageKind, Fixed> {
             linux_kind(
                 std::env::var_os("APPIMAGE").is_some(),
                 std::env::var_os("FLATPAK_ID").is_some(),
-                Path::new("/var/lib/dpkg/info/concat.list").exists(),
+                Path::new("/var/lib/dpkg/info/demoncut.list").exists(),
                 pacman_has_concat(),
                 rpm_has_concat(),
             )
@@ -325,25 +325,25 @@ fn linux_kind(
     }
 }
 
-/// Whether pacman's database lists the `concat` package: a folder named
-/// `concat-<version>-<release>` under its local store.
+/// Whether pacman's database lists the `demoncut` package: a folder named
+/// `demoncut-<version>-<release>` under its local store.
 fn pacman_has_concat() -> bool {
     std::fs::read_dir("/var/lib/pacman/local").is_ok_and(|entries| {
         entries.flatten().any(|entry| {
             let name = entry.file_name();
             let name = name.to_string_lossy();
-            name.strip_prefix("concat-")
+            name.strip_prefix("demoncut-")
                 .is_some_and(|rest| rest.starts_with(|c: char| c.is_ascii_digit()))
         })
     })
 }
 
-/// Whether the RPM database lists `concat`. Asked of `rpm` itself, and only
+/// Whether the RPM database lists `demoncut`. Asked of `rpm` itself, and only
 /// where there is a database to ask about.
 fn rpm_has_concat() -> bool {
     Path::new("/var/lib/rpm").exists()
         && Command::new("rpm")
-            .args(["-q", "concat"])
+            .args(["-q", "demoncut"])
             .output()
             .is_ok_and(|output| output.status.success())
 }
@@ -352,7 +352,7 @@ fn rpm_has_concat() -> bool {
 /// hash to.
 #[derive(Clone, Debug, PartialEq, Eq)]
 pub struct Package {
-    /// Its file name, `Concat-0.2.5-macos-arm64.dmg`.
+    /// Its file name, `DemonCut-0.2.5-macos-arm64.dmg`.
     pub file: String,
     /// Where to fetch it.
     pub url: String,
@@ -675,7 +675,7 @@ fn get_text(url: &str) -> Result<String, String> {
         .build();
     let response = agent
         .get(url)
-        .set("User-Agent", &format!("Concat/{}", Version::current()))
+        .set("User-Agent", &format!("DemonCut/{}", Version::current()))
         .set("Accept", "application/vnd.github+json")
         .call()
         .map_err(|error| match error {
@@ -761,10 +761,10 @@ mod tests {
     const MANIFEST: &str = r#"{
         "schema": 2, "version": "0.2.6", "tag": "v0.2.6",
         "binaries": {
-            "macos": {"arm64": {"dmg": {"file": "Concat-0.2.6-macos-arm64.dmg", "url": "https://example.test/arm64.dmg", "bytes": 59456586, "sha256": "26cc"}}},
-            "linux": {"x86_64": {"appimage": {"file": "Concat-0.2.6-linux-x86_64.AppImage", "url": "https://example.test/x.AppImage", "bytes": 1, "sha256": "5c75"},
+            "macos": {"arm64": {"dmg": {"file": "DemonCut-0.2.6-macos-arm64.dmg", "url": "https://example.test/arm64.dmg", "bytes": 59456586, "sha256": "26cc"}}},
+            "linux": {"x86_64": {"appimage": {"file": "DemonCut-0.2.6-linux-x86_64.AppImage", "url": "https://example.test/x.AppImage", "bytes": 1, "sha256": "5c75"},
                                  "deb": {"file": "../evil.deb", "url": "https://example.test/evil", "bytes": 1, "sha256": "00"}}},
-            "windows": {"aarch64": {"setup": {"file": "Concat-0.2.6-windows-aarch64-setup.exe", "url": "https://example.test/setup.exe", "sha256": "7042"}}}
+            "windows": {"aarch64": {"setup": {"file": "DemonCut-0.2.6-windows-aarch64-setup.exe", "url": "https://example.test/setup.exe", "sha256": "7042"}}}
         }
     }"#;
 
@@ -772,7 +772,7 @@ mod tests {
     fn the_package_is_found_by_platform_architecture_and_kind() {
         let mac =
             package_from_manifest(MANIFEST, "macos", "aarch64", PackageKind::Dmg).expect("a Mac's");
-        assert_eq!(mac.file, "Concat-0.2.6-macos-arm64.dmg");
+        assert_eq!(mac.file, "DemonCut-0.2.6-macos-arm64.dmg");
         assert_eq!(mac.bytes, 59456586);
         assert_eq!(mac.sha256, "26cc");
         let appimage = package_from_manifest(MANIFEST, "linux", "x86_64", PackageKind::AppImage)
@@ -850,7 +850,7 @@ mod tests {
         }
         assert_eq!(
             manifest_url("v0.2.6"),
-            "https://github.com/jub0t/Concat/releases/download/v0.2.6/manifest.json"
+            "https://github.com/DaftHD/Demon-Cut/releases/download/v0.2.6/manifest.json"
         );
     }
 

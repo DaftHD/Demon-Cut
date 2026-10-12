@@ -56,7 +56,7 @@ pub struct DownloadProgress {
     pub done: bool,
 }
 
-/// Streams a model into `partial`: Concat's own mirror first, the upstream
+/// Streams a model into `partial`: Demon Cut's own mirror first, the upstream
 /// it was filled from second, and the finished file checked against the
 /// digest its table carries before the caller is told it arrived.
 ///

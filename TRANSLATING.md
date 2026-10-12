@@ -1,6 +1,6 @@
-# Translating Concat
+# Translating Demon Cut
 
-Concat speaks the language you choose in Settings › General › Language, and a
+Demon Cut speaks the language you choose in Settings › General › Language, and a
 language is one file. This is how to add or improve one.
 
 ## How it works
@@ -39,30 +39,30 @@ The file's name is the language code: `de.json`, `pt-BR.json`, `zh-Hans.json`.
 
 ## Trying a translation without building
 
-Drop your file into the `locales` folder of Concat's config directory and
+Drop your file into the `locales` folder of Demon Cut's config directory and
 restart the app; the language appears in Settings.
 
 | Platform | Folder |
 |---|---|
-| macOS | `~/Library/Application Support/app.concat.editor/locales/` |
-| Linux | `~/.config/app.concat.editor/locales/` |
-| Windows | `%APPDATA%\app.concat.editor\locales\` |
+| macOS | `~/Library/Application Support/com.demonstudios.demoncut/locales/` |
+| Linux | `~/.config/com.demonstudios.demoncut/locales/` |
+| Windows | `%APPDATA%\com.demonstudios.demoncut\locales\` |
 
-A file there with the code of a language Concat ships lays its lines over
+A file there with the code of a language Demon Cut ships lays its lines over
 the shipped ones, so a correction is a file holding only the lines that
 change.
 
-## Shipping a language with Concat
+## Shipping a language with Demon Cut
 
 1. Put the file in `src/crates/concat/locales/`.
 2. Add its code and file to the `BUILT_IN` table at the top of
    `src/crates/concat/src/i18n.rs`.
 3. Run `python3 scripts/locales.py --check`. It lists every line each
    locale still lacks, and refuses a key nothing in the source asks for.
-4. Open a pull request. Corrections to the languages Concat already ships
+4. Open a pull request. Corrections to the languages Demon Cut already ships
    are just as welcome as new ones.
 
-Concat ships English, Deutsch, Español, فارسی, Français, Hrvatski, Italiano,
+Demon Cut ships English, Deutsch, Español, فارسی, Français, Hrvatski, Italiano,
 日本語, 한국어, Português (Brasil), Русский, Türkçe, 简体中文 and 正體中文.
 
 ## For developers

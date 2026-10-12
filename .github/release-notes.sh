@@ -27,7 +27,7 @@ set -euo pipefail
 since="$1"
 until="$2"
 version="$3"
-title="Concat $version"
+title="Demon Cut $version"
 
 # A conventional-commit type, with its optional (scope) and breaking `!`.
 type='^[a-z]+(\([^)]*\))?!?: '
@@ -75,7 +75,7 @@ fi
 cat <<'MD'
 ### Download
 
-A self-contained build for every platform Concat ships on.
+A self-contained build for every platform Demon Cut ships on.
 
 | | Apple silicon | Intel / x86_64 | arm64 |
 |---|---|---|---|

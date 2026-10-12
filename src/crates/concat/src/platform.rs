@@ -427,12 +427,12 @@ pub fn select_backend(
             .with_winit_window_attributes_hook(|attributes| attributes.with_decorations(false));
     }
     selector.select()?;
-    // The desktop entry's name (concat.desktop, in every Linux package and
+    // The desktop entry's name (demoncut.desktop, in every Linux package and
     // the flake), as the window's Wayland app_id and X11 class, so a dock
     // or a task switcher files the running window under the launcher it
     // came from - its icon, its pin - rather than as an unknown app. Slint
     // ignores it off Linux and the BSDs.
-    let _ = slint::set_xdg_app_id("concat");
+    let _ = slint::set_xdg_app_id("demoncut");
     Ok(gpu)
 }
 
@@ -445,13 +445,13 @@ pub fn select_backend(
 pub fn report_startup_failure(error: &str) {
     #[cfg(not(any(target_os = "android", target_os = "ios")))]
     {
-        let mut description = format!("Concat could not start.\n\n{error}");
+        let mut description = format!("Demon Cut could not start.\n\n{error}");
         if let Some(path) = concat_host::logs::current() {
             description.push_str(&format!("\n\nLog: {}", path.display()));
         }
         rfd::MessageDialog::new()
             .set_level(rfd::MessageLevel::Error)
-            .set_title("Concat")
+            .set_title("Demon Cut")
             .set_description(description)
             .set_buttons(rfd::MessageButtons::Ok)
             .show();
@@ -604,7 +604,7 @@ pub fn install_file_picker(picker: FilePicker) {
 /// [`install_export_publisher`].
 #[cfg(any(target_os = "android", target_os = "ios"))]
 pub struct ExportPublisher {
-    /// Where the files go, as the phone names it: "Movies/Concat".
+    /// Where the files go, as the phone names it: "Movies/Demon Cut".
     pub folder: String,
     /// Moves the file there and answers with its path under the phone's
     /// storage, or with why it could not, leaving the file where it was.
@@ -623,7 +623,7 @@ pub fn install_export_publisher(publisher: ExportPublisher) {
 }
 
 /// Where a finished export ends up on this device when that is not the
-/// folder the export writes into: a phone's "Movies/Concat". None on a
+/// folder the export writes into: a phone's "Movies/Demon Cut". None on a
 /// desktop, and on a phone too old to be asked, where the file stays where
 /// the sheet says.
 pub fn published_folder() -> Option<&'static str> {
