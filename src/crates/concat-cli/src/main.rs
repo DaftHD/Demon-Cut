@@ -28,7 +28,11 @@ use concat_media::{EncodeOptions, Encoder, FrameSink, ReaderPool};
 use concat_render::{Compositor, WgpuCompositor, plan_frame};
 
 #[derive(Parser)]
-#[command(name = "demoncut-cli", version, about = "Demon Cut engine command line")]
+#[command(
+    name = "demoncut-cli",
+    version,
+    about = "Demon Cut engine command line"
+)]
 struct Cli {
     #[command(subcommand)]
     command: Command,
@@ -223,7 +227,10 @@ fn serve(
         );
     }
     if let Some(address) = server.grpc_addr() {
-        println!("Demon Cut API {}: gRPC on {address}", concat_api::API_VERSION);
+        println!(
+            "Demon Cut API {}: gRPC on {address}",
+            concat_api::API_VERSION
+        );
     }
     println!(
         "Demon Cut API {}: token {}",
