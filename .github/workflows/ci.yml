@@ -5,7 +5,7 @@ name: CI
 #
 # Every action is pinned to a commit, with the tag it was in a comment
 # beside it: a tag can be moved to other code after a run has trusted it,
-# a commit cannot. Dependabot proposes the bumps (.github/dependabot.yml).
+# a commit cannot. Bump them by hand (Dependabot is switched off here).
 # The prebuilt libraries the jobs download are pinned the same way, by
 # digest, in scripts/ci/deps.lock.
 on:
