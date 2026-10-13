@@ -719,6 +719,7 @@
   "settings.amber": "Amber",
   "settings.appearance": "Görünüm",
   "settings.automatic": "Otomatik",
+  "settings.basedOnConcat": "Jareer ve Concat katkıcılarının geliştirdiği Concat'e dayanır. AGPL-3.0-or-later kapsamında özgür yazılımdır.",
   "settings.checkForUpdates": "Güncellemeleri denetle",
   "settings.checkingForUpdates": "Denetleniyor…",
   "settings.concat": "Demon Cut {0}",

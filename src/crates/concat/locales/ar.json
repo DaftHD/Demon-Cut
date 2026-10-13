@@ -719,6 +719,7 @@
   "settings.amber": "كهرماني",
   "settings.appearance": "المظهر",
   "settings.automatic": "تلقائي",
+  "settings.basedOnConcat": "مبني على Concat من تطوير Jareer ومساهمي Concat. برنامج حر بموجب رخصة AGPL-3.0-or-later.",
   "settings.checkForUpdates": "التحقق من التحديثات",
   "settings.checkingForUpdates": "جارٍ التحقق…",
   "settings.concat": "Demon Cut {0}",

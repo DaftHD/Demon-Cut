@@ -719,6 +719,7 @@
   "settings.amber": "อำพัน",
   "settings.appearance": "ลักษณะที่ปรากฏ",
   "settings.automatic": "อัตโนมัติ",
+  "settings.basedOnConcat": "พัฒนาต่อยอดจาก Concat โดย Jareer และผู้ร่วมพัฒนา Concat ซอฟต์แวร์เสรีภายใต้สัญญาอนุญาต AGPL-3.0-or-later",
   "settings.checkForUpdates": "ตรวจหาอัปเดต",
   "settings.checkingForUpdates": "กำลังตรวจสอบ…",
   "settings.concat": "Demon Cut {0}",

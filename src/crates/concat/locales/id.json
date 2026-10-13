@@ -719,6 +719,7 @@
   "settings.amber": "Ambar",
   "settings.appearance": "Tampilan",
   "settings.automatic": "Otomatis",
+  "settings.basedOnConcat": "Berbasis Concat oleh Jareer dan para kontributor Concat. Perangkat lunak bebas di bawah AGPL-3.0-or-later.",
   "settings.checkForUpdates": "Periksa pembaruan",
   "settings.checkingForUpdates": "Memeriksa…",
   "settings.concat": "Demon Cut {0}",

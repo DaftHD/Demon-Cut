@@ -719,6 +719,7 @@
   "settings.amber": "کہربائی",
   "settings.appearance": "ظاہری شکل",
   "settings.automatic": "خودکار",
+  "settings.basedOnConcat": "Jareer اور Concat کے معاونین کے بنائے گئے Concat پر مبنی۔ AGPL-3.0-or-later کے تحت آزاد سافٹ ویئر۔",
   "settings.checkForUpdates": "اپ ڈیٹس چیک کریں",
   "settings.checkingForUpdates": "چیک ہو رہا ہے…",
   "settings.concat": "Demon Cut {0}",

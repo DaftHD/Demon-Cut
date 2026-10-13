@@ -719,6 +719,7 @@
   "settings.amber": "Янтарь",
   "settings.appearance": "Оформление",
   "settings.automatic": "Автоматически",
+  "settings.basedOnConcat": "Основано на Concat от Jareer и участников проекта Concat. Свободное ПО под лицензией AGPL-3.0-or-later.",
   "settings.checkForUpdates": "Проверить обновления",
   "settings.checkingForUpdates": "Проверка…",
   "settings.concat": "Demon Cut {0}",

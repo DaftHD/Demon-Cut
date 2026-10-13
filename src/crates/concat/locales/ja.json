@@ -719,6 +719,7 @@
   "settings.amber": "アンバー",
   "settings.appearance": "外観",
   "settings.automatic": "自動",
+  "settings.basedOnConcat": "Jareer と Concat の貢献者による Concat をもとにしています。AGPL-3.0-or-later のもとで公開されている自由ソフトウェアです。",
   "settings.checkForUpdates": "アップデートを確認",
   "settings.checkingForUpdates": "確認中…",
   "settings.concat": "Demon Cut {0}",

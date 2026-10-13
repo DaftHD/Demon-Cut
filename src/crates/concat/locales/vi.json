@@ -719,6 +719,7 @@
   "settings.amber": "Hổ phách",
   "settings.appearance": "Giao diện",
   "settings.automatic": "Tự động",
+  "settings.basedOnConcat": "Dựa trên Concat của Jareer và những người đóng góp cho Concat. Phần mềm tự do theo giấy phép AGPL-3.0-or-later.",
   "settings.checkForUpdates": "Kiểm tra cập nhật",
   "settings.checkingForUpdates": "Đang kiểm tra…",
   "settings.concat": "Demon Cut {0}",

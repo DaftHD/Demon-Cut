@@ -719,6 +719,7 @@
   "settings.amber": "Amber",
   "settings.appearance": "Darstellung",
   "settings.automatic": "Automatisch",
+  "settings.basedOnConcat": "Basiert auf Concat von Jareer und den Concat-Mitwirkenden. Freie Software unter der AGPL-3.0-or-later.",
   "settings.checkForUpdates": "Nach Updates suchen",
   "settings.checkingForUpdates": "Wird geprüft…",
   "settings.concat": "Demon Cut {0}",

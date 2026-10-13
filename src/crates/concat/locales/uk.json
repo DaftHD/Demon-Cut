@@ -719,6 +719,7 @@
   "settings.amber": "Бурштин",
   "settings.appearance": "Вигляд",
   "settings.automatic": "Автоматично",
+  "settings.basedOnConcat": "Створено на основі Concat від Jareer та учасників проєкту Concat. Вільне ПЗ за ліцензією AGPL-3.0-or-later.",
   "settings.checkForUpdates": "Перевірити оновлення",
   "settings.checkingForUpdates": "Перевірка…",
   "settings.concat": "Demon Cut {0}",

@@ -719,6 +719,7 @@
   "settings.amber": "অ্যাম্বার",
   "settings.appearance": "চেহারা",
   "settings.automatic": "স্বয়ংক্রিয়",
+  "settings.basedOnConcat": "Jareer ও Concat অবদানকারীদের তৈরি Concat-এর উপর ভিত্তি করে। AGPL-3.0-or-later লাইসেন্সের অধীনে মুক্ত সফটওয়্যার।",
   "settings.checkForUpdates": "আপডেট পরীক্ষা করুন",
   "settings.checkingForUpdates": "পরীক্ষা করা হচ্ছে…",
   "settings.concat": "Demon Cut {0}",

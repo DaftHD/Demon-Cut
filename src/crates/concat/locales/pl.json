@@ -719,6 +719,7 @@
   "settings.amber": "Bursztyn",
   "settings.appearance": "Wygląd",
   "settings.automatic": "Automatycznie",
+  "settings.basedOnConcat": "Oparte na programie Concat autorstwa Jareera i współtwórców Concat. Wolne oprogramowanie na licencji AGPL-3.0-or-later.",
   "settings.checkForUpdates": "Sprawdź aktualizacje",
   "settings.checkingForUpdates": "Sprawdzanie…",
   "settings.concat": "Demon Cut {0}",

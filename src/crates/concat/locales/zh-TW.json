@@ -719,6 +719,7 @@
   "settings.amber": "琥珀",
   "settings.appearance": "外觀",
   "settings.automatic": "自動",
+  "settings.basedOnConcat": "以 Jareer 與 Concat 貢獻者開發的 Concat 為基礎。依 AGPL-3.0-or-later 授權的自由軟體。",
   "settings.checkForUpdates": "檢查更新",
   "settings.checkingForUpdates": "正在檢查…",
   "settings.concat": "Demon Cut {0}",

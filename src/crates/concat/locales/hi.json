@@ -719,6 +719,7 @@
   "settings.amber": "एम्बर",
   "settings.appearance": "रूप-रंग",
   "settings.automatic": "स्वचालित",
+  "settings.basedOnConcat": "Jareer और Concat योगदानकर्ताओं के Concat पर आधारित। AGPL-3.0-or-later के अंतर्गत मुक्त सॉफ़्टवेयर।",
   "settings.checkForUpdates": "अपडेट देखें",
   "settings.checkingForUpdates": "जांच हो रही है…",
   "settings.concat": "Demon Cut {0}",

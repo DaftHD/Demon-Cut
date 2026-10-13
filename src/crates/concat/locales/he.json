@@ -719,6 +719,7 @@
   "settings.amber": "ענבר",
   "settings.appearance": "מראה",
   "settings.automatic": "אוטומטי",
+  "settings.basedOnConcat": "מבוסס על Concat מאת Jareer ותורמי Concat. תוכנה חופשית תחת רישיון AGPL-3.0-or-later.",
   "settings.checkForUpdates": "בדיקת עדכונים",
   "settings.checkingForUpdates": "בודק…",
   "settings.concat": "Demon Cut {0}",

@@ -719,6 +719,7 @@
   "settings.amber": "Ambra",
   "settings.appearance": "Aspetto",
   "settings.automatic": "Automatico",
+  "settings.basedOnConcat": "Basato su Concat di Jareer e dei collaboratori di Concat. Software libero sotto licenza AGPL-3.0-or-later.",
   "settings.checkForUpdates": "Cerca aggiornamenti",
   "settings.checkingForUpdates": "Controllo in corso…",
   "settings.concat": "Demon Cut {0}",
