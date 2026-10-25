@@ -8,7 +8,9 @@
 //! frame, decode, composite, encode. The `api` command is the Demon Cut API's
 //! first transport: JSON-RPC requests in, responses and events out, one per
 //! line, so a script in any language edits and exports a project; `serve`
-//! is the same API on a socket, for callers that are other processes.
+//! is the same API on a socket, for callers that are other processes;
+//! `mcp` is the same API again as Model Context Protocol tools on stdin and
+//! stdout, for an AI agent such as Claude.
 //! `preview` draws one effect's card the way the window draws the
 //! catalogue's: a still through the package's own shader on the GPU. `check` is what an author runs on
 //! an effect package before sharing it: the same load the window does, its
@@ -26,6 +28,8 @@ use concat_core::time::{FrameRate, Rational};
 use concat_core::timeline::{Clip, MediaRef, Timeline, Track, TrackKind};
 use concat_media::{EncodeOptions, Encoder, FrameSink, ReaderPool};
 use concat_render::{Compositor, WgpuCompositor, plan_frame};
+
+mod mcp;
 
 #[derive(Parser)]
 #[command(
@@ -94,6 +98,17 @@ enum Command {
         roots: Vec<PathBuf>,
     },
 
+    /// Serve the Demon Cut API to an AI agent as Model Context Protocol
+    /// tools, over stdin and stdout: what an MCP client such as Claude's
+    /// desktop app starts. Writes are confined to your home folder unless
+    /// `--root` names others.
+    Mcp {
+        /// A folder the agent may write under: created projects, exports,
+        /// preview files. Repeatable. Your home when none is given.
+        #[arg(long = "root", value_name = "DIR")]
+        roots: Vec<PathBuf>,
+    },
+
     /// Draw one effect's card - a still through the package's own shader
     /// on the GPU, at its defaults or its manifest's `[card]` settings,
     /// the way the window draws the catalogue's - and write it as a JPEG:
@@ -143,6 +158,7 @@ fn main() -> Result<(), Box<dyn Error>> {
             token,
             roots,
         } => serve(json, socket, grpc, token, roots),
+        Command::Mcp { roots } => mcp::run(roots),
         Command::Preview {
             input,
             output,

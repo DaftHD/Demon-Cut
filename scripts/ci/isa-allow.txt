@@ -60,4 +60,5 @@ concrt140.dll                  any
 # the count shown, without the `~`, so the next library compiled for
 # Haswell fails the build.
 demoncut.exe                   -     -     ~1000  -          -
+demoncut-cli.exe               -     -     ~1000  -          -
 demoncut                       -     -     ~1000  -          -

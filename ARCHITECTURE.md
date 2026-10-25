@@ -443,9 +443,13 @@ flowchart LR
   the window share is the export slot (one export at a time across them)
   and `concat_api::OpenProjects`, so neither opens a folder the other is
   editing.
-- The README names an MCP transport. There is none in the tree; the
-  socket transports are JSON-RPC and gRPC, and an MCP server would be a
-  third transport over the same `Api`.
+- MCP is the third transport over the same `Api`: `demoncut-cli mcp`
+  speaks the Model Context Protocol on stdin and stdout
+  (`concat-cli/src/mcp.rs`), one tool per method plus `edit_reference`
+  (the command vocabulary, read from `concat-project` at build time) and
+  `export_status` (a job's events, waited for on request). Writes are
+  confined to the home folder unless `--root` names others. The Windows
+  installer ships `demoncut-cli.exe` beside the window for it.
 
 ## 9. Speech, vision and text
 
