@@ -495,27 +495,25 @@ jobs:
       # build goes there, and a red run explains itself to anyone.
       - name: Build
         # An Intel Mac runner is the slow one: its release build ran past
-        # sixty minutes in v0.2.7-rc.1.
-        timeout-minutes: ${{ matrix.platform == 'macos' && matrix.arch == 'x86_64' && 100 || 60 }}
+        # sixty minutes in v0.2.7-rc.1. Windows builds the command line as
+        # well, so it gets a little longer than the rest.
+        timeout-minutes: ${{ matrix.platform == 'macos' && matrix.arch == 'x86_64' && 100 || matrix.platform == 'windows' && 80 || 60 }}
         shell: bash
         working-directory: src
         run: |
           set -o pipefail
-          cargo build --profile app -p concat --target ${{ matrix.target }} 2>&1 | tee build.log
-
-      # The command line, for Windows only: `demoncut-cli mcp` is what an AI
-      # agent such as Claude's desktop app starts to drive the editor, and
-      # `serve` / `api` are there for scripts. A step of its own, not a
-      # second `-p` on the one above, so the window's features are never
-      # unified with the CLI's.
-      - name: Build the command line (Windows)
-        if: matrix.platform == 'windows'
-        timeout-minutes: 45
-        shell: bash
-        working-directory: src
-        run: |
-          set -o pipefail
-          cargo build --profile app -p concat-cli --target ${{ matrix.target }} 2>&1 | tee -a build.log
+          packages="-p concat"
+          # Windows ships the command line beside the window: `demoncut-cli
+          # mcp` is what an AI agent such as Claude's desktop app starts to
+          # drive the editor, and `serve` / `api` are there for scripts. It
+          # is built in the same invocation, as CI builds the workspace, so
+          # the two share one set of features and one build of every
+          # dependency. Built alone, its narrower features rebuilt FFmpeg's
+          # bindings differently and the build failed (v0.2.8).
+          if [ "${{ matrix.platform }}" = "windows" ]; then
+            packages="$packages -p concat-cli"
+          fi
+          cargo build --profile app $packages --target ${{ matrix.target }} 2>&1 | tee build.log
 
       - name: Build log to the summary (failure only)
         if: failure()
